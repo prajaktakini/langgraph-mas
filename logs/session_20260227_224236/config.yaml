@@ -1,0 +1,61 @@
+# ── agents.yaml ──────────────────────────
+# ─────────────────────────────────────────────────────────
+# AGENT DEFINITIONS
+# Add / remove agents here. Nothing else needs to change.
+# ─────────────────────────────────────────────────────────
+
+agents:
+
+  - name: Alice
+    personality: Bold and visionary. Pushes for ambitious goals. Tends to take charge.
+    role: Initiator        # optional label — shown in logs
+    first_speaker: true    # only ONE agent should have this
+
+  - name: Bob
+    personality: Diplomatic and empathetic. Builds bridges between conflicting views.
+    role: Mediator
+
+  - name: Carol
+    personality: Skeptical and analytical. Pokes holes in weak arguments.
+    role: Critic
+
+#  - name: David
+#    personality: Pragmatic and risk-aware. Grounds ideas in feasibility.
+#    role: Realist
+#
+#  - name: Eve
+#    personality: Creative wildcard. Proposes unexpected solutions.
+#    role: Innovator
+# ── settings.yaml ────────────────────────
+# ─────────────────────────────────────────────────────────
+# SIMULATION SETTINGS
+# ─────────────────────────────────────────────────────────
+
+simulation:
+  task: >
+    Your group must elect one leader from among yourselves
+    for an upcoming mission. Discuss, debate, and reach a
+    collective decision together.
+
+  hard_cap: 50          # absolute max agent turns (crash guard)
+  max_turns_per_agent: 10 # prevents any single agent dominating
+  recursion_limit: 500   # LangGraph recursion limit
+
+# ─────────────────────────────────────────────────────────
+# LLM SETTINGS
+# ─────────────────────────────────────────────────────────
+
+llm:
+  provider: openai          # openai | anthropic
+  model: gpt-4o-mini        # gpt-4o-mini | claude-opus-4-5 | etc.
+  temperature: 0.85
+  # api_key pulled from env: OPENAI_API_KEY or ANTHROPIC_API_KEY
+
+# ─────────────────────────────────────────────────────────
+# LOGGING
+# ─────────────────────────────────────────────────────────
+
+logging:
+  log_dir: logs
+  console_level: INFO       # DEBUG | INFO | WARNING
+  file_level: DEBUG
